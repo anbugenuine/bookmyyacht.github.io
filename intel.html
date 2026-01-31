@@ -1,1 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean Charters Dubai | 10 Luxury Yachts & Jet Car</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #C19A6B; /* Main Gold Color */
+            --secondary: #0A2463; /* Deep Blue */
+            --accent: #B8860B; /* Dark Gold */
+            --light: #F8F5F2; /* Light Background */
+            --dark: #1A1A2E; /* Dark Background */
+            --pink: #FF69B4; /* Pink for Jet Car */
+            --text: #333333;
+            --white: #FFFFFF;
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; line-height: 1.6; color: var(--text); background-color: var(--light); }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(26, 26, 46, 0.95);
+            padding: 15px 0;
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            display: flex; justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        .nav-container {
+            width: 90%; max-width: 1200px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { color: var(--white); font-size: 1.8rem; font-weight: 700; text-decoration: none; }
+        .logo span { color: var(--primary); }
+        .nav-links a { color: var(--white); text-decoration: none; margin-left: 2rem; font-weight: 500; }
+        .nav-links a:hover { color: var(--primary); }
+        .mobile-menu { display: none; font-size: 1.5rem; color: white; cursor: pointer; }
+
+        /* Hero Section with Video Background */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 0;
+            overflow: hidden;
+        }
+       
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+       
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 46, 0.7);
+            z-index: -1;
+        }
+       
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+            z-index: 1;
+            margin-top: 60px;
+        }
+       
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+       
+        .hero p {
+            font-size: 1.3rem;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+            max-width: 700px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+       
+        .cta-button {
+            background: var(--primary);
+            color: var(--dark);
+            padding: 15px 35px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+       
+        .cta-button:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Section Styling */
+        .section { padding: 100px 20px; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--secondary); margin-bottom: 15px; }
+
+        /* Yacht Filter */
+        .yacht-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .filter-btn {
+            padding: 10px 25px;
+            background: white;
+            border: 2px solid var(--secondary);
+            border-radius: 30px;
+            color: var(--secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        .filter-btn.pink { border-color: var(--pink); }
+        .filter-btn.pink.active, .filter-btn.pink:hover { background: var(--pink); }
+
+        /* Yacht Grid */
+        .yacht-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .yacht-card {
+            background: var(--white); border-radius: 15px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        .yacht-card:hover { transform: translateY(-10px); }
+       
+        /* Special badge for Jet Car */
+        .jet-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--pink);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            z-index: 2;
+        }
+       
+        /* Yacht Slideshow */
+        .yacht-slideshow {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation-duration: 30s;
+            animation-iteration-count: infinite;
+        }
+       
+        /* Individual slide animations for each yacht */
+        .yacht-card:nth-child(1) .yacht-slideshow .slide:nth-child(1) { animation-name: slideShow1; animation-delay: 0s; }
+        .yacht-card:nth-child(1) .yacht-slideshow .slide:nth-child(2) { animation-name: slideShow1; animation-delay: 5s; }
+        .yacht-card:nth-child(1) .yacht-slideshow .slide:nth-child(3) { animation-name: slideShow1; animation-delay: 10s; }
+        .yacht-card:nth-child(1) .yacht-slideshow .slide:nth-child(4) { animation-name: slideShow1; animation-delay: 15s; }
+        .yacht-card:nth-child(1) .yacht-slideshow .slide:nth-child(5) { animation-name: slideShow1; animation-delay: 20s; }
+        .yacht-card:nth-child(1) .yacht-slideshow .slide:nth-child(6) { animation-name: slideShow1; animation-delay: 25s; }
+
+        .yacht-card:nth-child(2) .yacht-slideshow .slide:nth-child(1) { animation-name: slideShow2; animation-delay: 0s; }
+        .yacht-card:nth-child(2) .yacht-slideshow .slide:nth-child(2) { animation-name: slideShow2; animation-delay: 5s; }
+        .yacht-card:nth-child(2) .yacht-slideshow .slide:nth-child(3) { animation-name: slideShow2; animation-delay: 10s; }
+        .yacht-card:nth-child(2) .yacht-slideshow .slide:nth-child(4) { animation-name: slideShow2; animation-delay: 15s; }
+        .yacht-card:nth-child(2) .yacht-slideshow .slide:nth-child(5) { animation-name: slideShow2; animation-delay: 20s; }
+        .yacht-card:nth-child(2) .yacht-slideshow .slide:nth-child(6) { animation-name: slideShow2; animation-delay: 25s; }
+
+        .yacht-card:nth-child(3) .yacht-slideshow .slide:nth-child(1) { animation-name: slideShow3; animation-delay: 0s; }
+        .yacht-card:nth-child(3) .yacht-slideshow .slide:nth-child(2) { animation-name: slideShow3; animation-delay: 5s; }
+        .yacht-card:nth-child(3) .yacht-slideshow .slide:nth-child(3) { animation-name: slideShow3; animation-delay: 10s; }
+        .yacht-card:nth-child(3) .yacht-slideshow .slide:nth-child(4) { animation-name: slideShow3; animation-delay: 15s; }
+        .yacht-card:nth-child(3) .yacht-slideshow .slide:nth-child(5) { animation-name: slideShow3; animation-delay: 20s; }
+        .yacht-card:nth-child(3) .yacht-slideshow .slide:nth-child(6) { animation-name: slideShow3; animation-delay: 25s; }
+
+        .yacht-card:nth-child(4) .yacht-slideshow .slide:nth-child(1) { animation-name: slideShow4; animation-delay: 0s; }
+        .yacht-card:nth-child(4) .yacht-slideshow .slide:nth-child(2) { animation-name: slideShow4; animation-delay: 5s; }
+        .yacht-card:nth-child(4) .yacht-slideshow .slide:nth-child(3) { animation-name: slideShow4; animation-delay: 10s; }
+        .yacht-card:nth-child(4) .yacht-slideshow .slide:nth-child(4) { animation-name: slideShow4; animation-delay: 15s; }
+        .yacht-card:nth-child(4) .yacht-slideshow .slide:nth-child(5) { animation-name: slideShow4; animation-delay: 20s; }
+        .yacht-card:nth-child(4) .yacht-slideshow .slide:nth-child(6) { animation-name: slideShow4; animation-delay: 25s; }
+
+        .yacht-card:nth-child(5) .yacht-slideshow .slide:nth-child(1) { animation-name: slideShow5; animation-delay: 0s; }
+        .yacht-card:nth-child(5) .yacht-slideshow .slide:nth-child(2) { animation-name: slideShow5; animation-delay: 5s; }
+        .yacht-card:nth-child(5) .yacht-slideshow .slide:nth-child(3) { animation-name: slideShow5; animation-delay: 10s; }
+        .yacht-card:nth-child(5) .yacht-slideshow .slide:nth-child(4) { animation-name: slideShow5; animation-delay: 15s; }
+        .yacht-card:nth-child(5) .yacht-slideshow .slide:nth-child(5) { animation-name: slideShow5; animation-delay: 20s; }
+        .yacht-card:nth-child(5) .yacht-slideshow .slide:nth-child(6) { animation-name: slideShow5; animation-delay: 25s; }
+
+        .yacht-card:nth-child(6) .yacht-slideshow .slide:nth-child(1) { animation-name: slideShow6; animation-delay: 0s; }
+        .yacht-card:nth-child(6) .yacht-slideshow .slide:nth-child(2) { animation-name: slideShow6; animation-delay: 5s; }
+        .yacht-card:nth-child(6) .yacht-slideshow .slide:nth-child(3) { animation-name: slideShow6; animation-delay: 10s; }
+        .yacht-card:nth-child(6) .yacht-slideshow .slide:nth-child(4) { animation-name: slideShow6; animation-delay: 15s; }
+        .yacht-card:nth-child(6) .yacht-slideshow .slide:nth-child(5) { animation-name: slideShow6; animation-delay: 20s; }
+        .yacht-card:nth-child(6) .yacht-slideshow .slide:nth-child(6) { animation-name: slideShow6; animation-delay: 25s; }
+
+        .yacht-card:nth-child(7) .yacht-slideshow .slide:nth-child(1) { animation-name: slideShow7; animation-delay: 0s; }
+        .yacht-card:nth-child(7) .yacht-slideshow .slide:nth-child(2) { animation-name: slideShow7; animation-delay: 5s; }
+        .yacht-card:nth-child(7) .yacht-slideshow .slide:nth-child(3) { animation-name: slideShow7; animation-delay: 10s; }
+        .yacht-card:nth-child(7) .yacht-slideshow .slide:nth-child(4) { animation-name: slideShow7; animation-delay: 15s; }
+        .yacht-card:nth-child(7) .yacht-slideshow .slide:nth-child(5) { animation-name: slideShow7; animation-delay: 20s; }
+        .yacht-card:nth-child(7) .yacht-slideshow .slide:nth-child(6) { animation-name: slideShow7; animation-delay: 25s; }
+
+        .yacht-card:nth-child(8) .yacht-slideshow .slide:nth-child(1) { animation-name: slideShow8; animation-delay: 0s; }
+        .yacht-card:nth-child(8) .yacht-slideshow .slide:nth-child(2) { animation-name: slideShow8; animation-delay: 5s; }
+        .yacht-card:nth-child(8) .yacht-slideshow .slide:nth-child(3) { animation-name: slideShow8; animation-delay: 10s; }
+        .yacht-card:nth-child(8) .yacht-slideshow .slide:nth-child(4) { animation-name: slideShow8; animation-delay: 15s; }
+        .yacht-card:nth-child(8) .yacht-slideshow .slide:nth-child(5) { animation-name: slideShow8; animation-delay: 20s; }
+        .yacht-card:nth-child(8) .yacht-slideshow .slide:nth-child(6) { animation-name: slideShow8; animation-delay: 25s; }
+
+        .yacht-card:nth-child(9) .yacht-slideshow .slide:nth-child(1) { animation-name: slideShow9; animation-delay: 0s; }
+        .yacht-card:nth-child(9) .yacht-slideshow .slide:nth-child(2) { animation-name: slideShow9; animation-delay: 5s; }
+        .yacht-card:nth-child(9) .yacht-slideshow .slide:nth-child(3) { animation-name: slideShow9; animation-delay: 10s; }
+        .yacht-card:nth-child(9) .yacht-slideshow .slide:nth-child(4) { animation-name: slideShow9; animation-delay: 15s; }
+        .yacht-card:nth-child(9) .yacht-slideshow .slide:nth-child(5) { animation-name: slideShow9; animation-delay: 20s; }
+        .yacht-card:nth-child(9) .yacht-slideshow .slide:nth-child(6) { animation-name: slideShow9; animation-delay: 25s; }
+
+        /* Jet Car - only 3 slides */
+        .yacht-card:nth-child(10) .yacht-slideshow .slide:nth-child(1) { animation-name: slideShow10; animation-delay: 0s; }
+        .yacht-card:nth-child(10) .yacht-slideshow .slide:nth-child(2) { animation-name: slideShow10; animation-delay: 10s; }
+        .yacht-card:nth-child(10) .yacht-slideshow .slide:nth-child(3) { animation-name: slideShow10; animation-delay: 20s; }
+
+        /* Animations */
+        @keyframes slideShow1 {
+            0%, 16.67% { opacity: 1; }
+            20%, 100% { opacity: 0; }
+        }
+        @keyframes slideShow2 {
+            0%, 16.67% { opacity: 1; }
+            20%, 100% { opacity: 0; }
+        }
+        @keyframes slideShow3 {
+            0%, 16.67% { opacity: 1; }
+            20%, 100% { opacity: 0; }
+        }
+        @keyframes slideShow4 {
+            0%, 16.67% { opacity: 1; }
+            20%, 100% { opacity: 0; }
+        }
+        @keyframes slideShow5 {
+            0%, 16.67% { opacity: 1; }
+            20%, 100% { opacity: 0; }
+        }
+        @keyframes slideShow6 {
+            0%, 16.67% { opacity: 1; }
+            20%, 100% { opacity: 0; }
+        }
+        @keyframes slideShow7 {
+            0%, 16.67% { opacity: 1; }
+            20%, 100% { opacity: 0; }
+        }
+        @keyframes slideShow8 {
+            0%, 16.67% { opacity: 1; }
+            20%, 100% { opacity: 0; }
+        }
+        @keyframes slideShow9 {
+            0%, 16.67% { opacity: 1; }
+            20%, 100% { opacity: 0; }
+        }
+        @keyframes slideShow10 {
+            0%, 33.33% { opacity: 1; }
+            40%, 100% { opacity: 0; }
+        }
+
+        .yacht-info { padding: 25px; }
+        .yacht-info h3 { color: var(--secondary); font-size: 1.6rem; margin-bottom: 10px; }
+        .yacht-location { color: var(--primary); font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .yacht-location i { color: var(--accent); }
+        
+        .yacht-features {
+            display: flex; flex-wrap: wrap; gap: 15px;
+            margin: 15px 0; padding: 15px 0;
+            border-top: 1px solid #eee; border-bottom: 1px solid #eee;
+        }
+        .yacht-features span { 
+            display: flex; 
+            align-items: center; 
+            gap: 5px;
+            font-size: 0.9rem;
+            background: #f8f8f8;
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+        
+        .yacht-price {
+            display: flex; justify-content: space-between; align-items: center; margin-top: 20px;
+        }
+        .price-tag { font-size: 1.6rem; font-weight: 700; color: var(--secondary); }
+        .price-note { font-size: 0.8rem; color: #666; margin-top: 3px; }
+        .enquiry-buttons { display: flex; gap: 10px; }
+        .btn-whatsapp, .btn-telegram {
+            padding: 10px 20px; border-radius: 4px;
+            text-decoration: none; font-weight: 600;
+            display: inline-flex; align-items: center; gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .btn-whatsapp { background: #25D366; color: white; }
+        .btn-whatsapp:hover { background: #128C7E; transform: translateY(-3px); }
+        .btn-telegram { background: #0088cc; color: white; }
+        .btn-telegram:hover { background: #006699; transform: translateY(-3px); }
+
+        /* Routes Section */
+        .routes-section {
+            background: linear-gradient(135deg, #0A2463 0%, #1A1A2E 100%);
+            color: white;
+            padding: 80px 20px;
+        }
+        .routes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+        .route-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+        .route-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.15);
+        }
+        .route-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .route-duration {
+            background: var(--primary);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        .route-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 15px 0;
+        }
+        .route-checkpoints {
+            list-style: none;
+        }
+        .route-checkpoints li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .route-checkpoints li:before {
+            content: "✓";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--secondary);
+            background: #f8f8f8;
+        }
+        .faq-question:hover {
+            background: #f0f0f0;
+        }
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--secondary); }
+        .form-control {
+            width: 100%; padding: 15px;
+            border: 1px solid #ddd; border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            transition: border 0.3s ease;
+        }
+        .form-control:focus { border-color: var(--primary); outline: none; }
+        textarea.form-control { min-height: 150px; resize: vertical; }
+        select.form-control { cursor: pointer; }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 60px 20px 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 50px;
+        }
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+        .footer-column p { margin-bottom: 15px; color: rgba(255,255,255,0.7); }
+        .footer-column a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .footer-column a:hover { color: var(--primary); }
+        .social-links { display: flex; gap: 15px; margin-top: 20px; }
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 2.8rem; }
+            .section-title h2 { font-size: 2.3rem; }
+            .yacht-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.3rem; }
+            .hero p { font-size: 1.1rem; }
+            .nav-links { 
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(26, 26, 46, 0.98);
+                flex-direction: column;
+                padding: 20px;
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { margin: 10px 0; }
+            .mobile-menu { display: block; }
+            .yacht-grid { grid-template-columns: 1fr; }
+            .yacht-price, .enquiry-buttons { flex-direction: column; gap: 15px; }
+            .yacht-features { flex-direction: column; gap: 10px; }
+            .cta-button { margin: 10px 0; display: block; }
+            .contact-form-container { padding: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2rem; }
+            .section-title h2 { font-size: 2rem; }
+            .routes-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== HEADER & NAVIGATION ========== -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo"><i class="fas fa-ship"></i> <span>Ocean</span>Charters</a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#yachts">10 Vessels</a>
+                <a href="#routes">Routes</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== HERO SECTION WITH VIDEO ========== -->
+    <section class="hero" id="home">
+        <video autoplay muted loop playsinline class="video-background">
+            <source src="yacht videos.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+       
+        <div class="hero-content">
+            <h1>10 Luxury Yachts & Jet Car in Dubai</h1>
+            <p>From intimate cruises to grand celebrations. Choose from our fleet of 9 premium yachts and 1 exclusive pink jet car.</p>
+            <a href="#yachts" class="cta-button">View All 10 Vessels</a>
+            <a href="#contact" class="cta-button" style="background: transparent; border: 2px solid var(--primary);">Instant Booking</a>
+        </div>
+    </section>
+<!-- ========== 10 YACHTS & JET CAR GALLERY ========== -->
+<section class="section" id="yachts">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Fleet of 10 Luxury Vessels</h2>
+            <p>9 Luxury Yachts + 1 Exclusive Pink Jet Car</p>
+        </div>
+
+        <!-- Yacht Filter -->
+        <div class="yacht-filter">
+            <button class="filter-btn active" data-filter="all">All Vessels</button>
+            <button class="filter-btn" data-filter="yacht">Yachts Only</button>
+            <button class="filter-btn pink" data-filter="jet">Jet Car</button>
+            <button class="filter-btn" data-filter="large">Large Capacity</button>
+            <button class="filter-btn" data-filter="small">Small Groups</button>
+        </div>
+
+        <!-- Yacht Grid - 10 Vessels -->
+        <div class="yacht-grid">
+            <!-- Yacht 1: Black Pearl -->
+            <div class="yacht-card" data-type="yacht" data-size="large">
+                <div class="yacht-slideshow">
+                    <div class="slide" style="background-image: url('black pearl1.jpg');"></div>
+                    <div class="slide" style="background-image: url('black pearl2.jpg');"></div>
+                    <div class="slide" style="background-image: url('black pearl3.jpg');"></div>
+                    <div class="slide" style="background-image: url('black pearl4.jpg');"></div>
+                    <div class="slide" style="background-image: url('black pearl5.jpg');"></div>
+                    <div class="slide" style="background-image: url('black pearl6.jpg');"></div>
+                </div>
+                <div class="yacht-info">
+                    <div class="yacht-location"><i class="fas fa-map-marker-alt"></i> Dubai Marina</div>
+                    <h3>Black Pearl</h3>
+                    <div class="yacht-features">
+                        <span><i class="fas fa-users"></i> 50 Guests</span>
+                        <span><i class="fas fa-clock"></i> 1 Hour</span>
+                        <span><i class="fas fa-ship"></i> Luxury Yacht</span>
+                    </div>
+                    <div class="yacht-price">
+                        <div>
+                            <div class="price-tag">AED 1,999<span style="font-size:1rem; font-weight:normal;">/hour</span></div>
+                            <div class="price-note">Perfect for large groups</div>
+                        </div>
+                        <div class="enquiry-buttons">
+                            <a href="https://wa.me/971527872669?text=Hi! I want to book Black Pearl yacht for 1 hour - AED 1,999" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://t.me/boatdubai" class="btn-telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yacht 2: Carmen -->
+            <div class="yacht-card" data-type="yacht" data-size="medium">
+                <div class="yacht-slideshow">
+                    <div class="slide" style="background-image: url('carmen1.jpg');"></div>
+                    <div class="slide" style="background-image: url('carmen2.jpg');"></div>
+                    <div class="slide" style="background-image: url('carmen3.jpg');"></div>
+                    <div class="slide" style="background-image: url('carmen4.jpg');"></div>
+                    <div class="slide" style="background-image: url('carmen5.jpg');"></div>
+                    <div class="slide" style="background-image: url('carmen6.jpg');"></div>
+                </div>
+                <div class="yacht-info">
+                    <div class="yacht-location"><i class="fas fa-map-marker-alt"></i>Dubai Marina</div>
+                    <h3>Carmen</h3>
+                    <div class="yacht-features">
+                        <span><i class="fas fa-users"></i> 30 Guests</span>
+                        <span><i class="fas fa-clock"></i> 1 Hour</span>
+                        <span><i class="fas fa-ship"></i> Premium Yacht</span>
+                    </div>
+                    <div class="yacht-price">
+                        <div>
+                            <div class="price-tag">AED 2,999<span style="font-size:1rem; font-weight:normal;">/hour</span></div>
+                            <div class="price-note">Elegant design</div>
+                        </div>
+                        <div class="enquiry-buttons">
+                            <a href="https://wa.me/971527872669?text=Hi! I want to book Carmen yacht for 1 hour - AED 2,999" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://t.me/boatdubai" class="btn-telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yacht 3: Deemas -->
+            <div class="yacht-card" data-type="yacht" data-size="large">
+                <div class="yacht-slideshow">
+                    <div class="slide" style="background-image: url('deemas1.jpg');"></div>
+                    <div class="slide" style="background-image: url('deemas2.jpg');"></div>
+                    <div class="slide" style="background-image: url('deemas3.jpg');"></div>
+                    <div class="slide" style="background-image: url('deemas4.jpg');"></div>
+                    <div class="slide" style="background-image: url('deemas5.jpg');"></div>
+                    <div class="slide" style="background-image: url('deemas6.jpg');"></div>
+                </div>
+                <div class="yacht-info">
+                    <div class="yacht-location"><i class="fas fa-map-marker-alt"></i> Dubai Marina</div>
+                    <h3>Deemas</h3>
+                    <div class="yacht-features">
+                        <span><i class="fas fa-users"></i> 110 Guests</span>
+                        <span><i class="fas fa-ruler"></i> 125 ft</span>
+                        <span><i class="fas fa-clock"></i> 1 Hour</span>
+                    </div>
+                    <div class="yacht-price">
+                        <div>
+                            <div class="price-tag">AED 4,499<span style="font-size:1rem; font-weight:normal;">/hour</span></div>
+                            <div class="price-note">Largest capacity</div>
+                        </div>
+                        <div class="enquiry-buttons">
+                            <a href="https://wa.me/971527872669?text=Hi! I want to book Deemas yacht for 1 hour - AED 4,499" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://t.me/boatdubai" class="btn-telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yacht 4: Majesty -->
+            <div class="yacht-card" data-type="yacht" data-size="medium">
+                <div class="yacht-slideshow">
+                    <div class="slide" style="background-image: url('unknown 1.jpg');"></div>
+                    <div class="slide" style="background-image: url('unknown 2.jpg');"></div>
+                    <div class="slide" style="background-image: url('unknown 3.jpg');"></div>
+                    <div class="slide" style="background-image: url('unknown 4.jpg');"></div>
+                    <div class="slide" style="background-image: url('unknown 5.jpg');"></div>
+                    <div class="slide" style="background-image: url('unknown 6.jpg');"></div>
+                </div>
+                <div class="yacht-info">
+                    <div class="yacht-location"><i class="fas fa-map-marker-alt"></i> Dubai Marina</div>
+                    <h3>Majesty</h3>
+                    <div class="yacht-features">
+                        <span><i class="fas fa-users"></i> 20 Guests</span>
+                        <span><i class="fas fa-ruler"></i> 62 ft</span>
+                        <span><i class="fas fa-clock"></i> 1 Hour</span>
+                    </div>
+                    <div class="yacht-price">
+                        <div>
+                            <div class="price-tag">AED 999<span style="font-size:1rem; font-weight:normal;">/hour</span></div>
+                            <div class="price-note">Great value</div>
+                        </div>
+                        <div class="enquiry-buttons">
+                            <a href="https://wa.me/971527872669?text=Hi! I want to book Majesty yacht for 1 hour - AED 999" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://t.me/boatdubai" class="btn-telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yacht 5: Pavi -->
+            <div class="yacht-card" data-type="yacht" data-size="medium">
+                <div class="yacht-slideshow">
+                    <div class="slide" style="background-image: url('pavi 1.jpg');"></div>
+                    <div class="slide" style="background-image: url('pavi 2.jpg');"></div>
+                    <div class="slide" style="background-image: url('pavi 3.jpg');"></div>
+                    <div class="slide" style="background-image: url('pavi 4.jpg');"></div>
+                    <div class="slide" style="background-image: url('pavi 5.jpg');"></div>
+                    <div class="slide" style="background-image: url('pavi 6.jpg');"></div>
+                </div>
+                <div class="yacht-info">
+                    <div class="yacht-location"><i class="fas fa-map-marker-alt"></i> Dubai Marina</div>
+                    <h3>Pavi</h3>
+                    <div class="yacht-features">
+                        <span><i class="fas fa-users"></i> 35 Guests</span>
+                        <span><i class="fas fa-ruler"></i> 80 ft</span>
+                        <span><i class="fas fa-clock"></i> 1 Hour</span>
+                    </div>
+                    <div class="yacht-price">
+                        <div>
+                            <div class="price-tag">AED 1,699<span style="font-size:1rem; font-weight:normal;">/hour</span></div>
+                            <div class="price-note">Perfect size</div>
+                        </div>
+                        <div class="enquiry-buttons">
+                            <a href="https://wa.me/971527872669?text=Hi! I want to book Pavi yacht for 1 hour - AED 1,699" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://t.me/boatdubai" class="btn-telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yacht 6: Conwy 8 -->
+            <div class="yacht-card" data-type="yacht" data-size="large">
+                <div class="yacht-slideshow">
+                    <div class="slide" style="background-image: url('canwy 1.jpg');"></div>
+                    <div class="slide" style="background-image: url('canwy 2.jpg');"></div>
+                    <div class="slide" style="background-image: url('canwy 3.jpg');"></div>
+                    <div class="slide" style="background-image: url('canwy 4.jpg');"></div>
+                    <div class="slide" style="background-image: url('canwy 5.jpg');"></div>
+                    <div class="slide" style="background-image: url('canwy 6.jpg');"></div>
+                </div>
+                <div class="yacht-info">
+                    <div class="yacht-location"><i class="fas fa-map-marker-alt"></i> Dubai Marina</div>
+                    <h3>Conwy 8</h3>
+                    <div class="yacht-features">
+                        <span><i class="fas fa-users"></i> 50 Guests</span>
+                        <span><i class="fas fa-ruler"></i> 88 ft</span>
+                        <span><i class="fas fa-clock"></i> 1 Hour</span>
+                    </div>
+                    <div class="yacht-price">
+                        <div>
+                            <div class="price-tag">AED 2,499<span style="font-size:1rem; font-weight:normal;">/hour</span></div>
+                            <div class="price-note">Modern design</div>
+                        </div>
+                        <div class="enquiry-buttons">
+                            <a href="https://wa.me/971527872669?text=Hi! I want to book Conwy 8 yacht for 1 hour - AED 2,499" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://t.me/boatdubai" class="btn-telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yacht 7: Majesty 48 -->
+            <div class="yacht-card" data-type="yacht" data-size="small">
+                <div class="yacht-slideshow">
+                    <div class="slide" style="background-image: url('majestry 48_1.jpg');"></div>
+                    <div class="slide" style="background-image: url('majestry 48_2.jpg');"></div>
+                    <div class="slide" style="background-image: url('majestry 48_3.jpg');"></div>
+                    <div class="slide" style="background-image: url('majestry 48_4.jpg');"></div>
+                    <div class="slide" style="background-image: url('majestry 48_5.jpg');"></div>
+                    <div class="slide" style="background-image: url('majestry 48_6.jpg');"></div>
+                </div>
+                <div class="yacht-info">
+                    <div class="yacht-location"><i class="fas fa-map-marker-alt"></i> Dubai Marina</div>
+                    <h3>Majesty 48</h3>
+                    <div class="yacht-features">
+                        <span><i class="fas fa-users"></i> 12 Guests</span>
+                        <span><i class="fas fa-ruler"></i> 48 ft</span>
+                        <span><i class="fas fa-clock"></i> 1 Hour</span>
+                    </div>
+                    <div class="yacht-price">
+                        <div>
+                            <div class="price-tag">AED 649<span style="font-size:1rem; font-weight:normal;">/hour</span></div>
+                            <div class="price-note">Most affordable</div>
+                        </div>
+                        <div class="enquiry-buttons">
+                            <a href="https://wa.me/971527872669?text=Hi! I want to book Majesty 48 yacht for 1 hour - AED 649" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://t.me/boatdubai" class="btn-telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yacht 8: Majesty 42 -->
+            <div class="yacht-card" data-type="yacht" data-size="small">
+                <div class="yacht-slideshow">
+                    <div class="slide" style="background-image: url('majesty 42_1.jpg');"></div>
+                    <div class="slide" style="background-image: url('majesty 42_2.jpg');"></div>
+                    <div class="slide" style="background-image: url('majesty 42_3.jpg');"></div>
+                    <div class="slide" style="background-image: url('majesty 42_4.jpg');"></div>
+                    <div class="slide" style="background-image: url('majesty 42_5.jpg');"></div>
+                    <div class="slide" style="background-image: url('majesty 42_6.jpg');"></div>
+                </div>
+                <div class="yacht-info">
+                    <div class="yacht-location"><i class="fas fa-map-marker-alt"></i> Dubai Marina</div>
+                    <h3>Majesty 42</h3>
+                    <div class="yacht-features">
+                        <span><i class="fas fa-users"></i> 13 Guests</span>
+                        <span><i class="fas fa-ruler"></i> 42 ft</span>
+                        <span><i class="fas fa-clock"></i> 1 Hour</span>
+                    </div>
+                    <div class="yacht-price">
+                        <div>
+                            <div class="price-tag">AED 699<span style="font-size:1rem; font-weight:normal;">/hour</span></div>
+                            <div class="price-note">Popular choice</div>
+                        </div>
+                        <div class="enquiry-buttons">
+                            <a href="https://wa.me/971527872669?text=Hi! I want to book Majesty 42 yacht for 1 hour - AED 699" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://t.me/boatdubai" class="btn-telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yacht 9: Silver Craft -->
+            <div class="yacht-card" data-type="yacht" data-size="small">
+                <div class="yacht-slideshow">
+                    <div class="slide" style="background-image: url('silver craft 1.jpg');"></div>
+                    <div class="slide" style="background-image: url('silver craft 2.jpg');"></div>
+                    <div class="slide" style="background-image: url('silver craft 3.jpg');"></div>
+                    <div class="slide" style="background-image: url('silver craft 4.jpg');"></div>
+                    <div class="slide" style="background-image: url('silver craft 5.jpg');"></div>
+                    <div class="slide" style="background-image: url('silver craft 6.jpg');"></div>
+                </div>
+                <div class="yacht-info">
+                    <div class="yacht-location"><i class="fas fa-map-marker-alt"></i> Dubai Marina</div>
+                    <h3>Silver Craft</h3>
+                    <div class="yacht-features">
+                        <span><i class="fas fa-users"></i> 8 Guests</span>
+                        <span><i class="fas fa-ruler"></i> 40 ft</span>
+                        <span><i class="fas fa-clock"></i> 1 Hour</span>
+                    </div>
+                    <div class="yacht-price">
+                        <div>
+                            <div class="price-tag">AED 499<span style="font-size:1rem; font-weight:normal;">/hour</span></div>
+                            <div class="price-note">Intimate groups</div>
+                        </div>
+                        <div class="enquiry-buttons">
+                            <a href="https://wa.me/971527872669?text=Hi! I want to book Silver Craft yacht for 1 hour - AED 499" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://t.me/boatdubai" class="btn-telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vessel 10: Pink Jet Car -->
+            <div class="yacht-card" data-type="jet" data-size="small">
+                <div class="jet-badge">EXCLUSIVE</div>
+                <div class="yacht-slideshow">
+                    <div class="slide" style="background-image: url('jet car pink 1.jpg'); background-color: #FFB6C1;"></div>
+                    <div class="slide" style="background-image: url('jet car pink 2.jpg'); background-color: #FFB6C1;"></div>
+                    <div class="slide" style="background-image: url('jet car pink 3.jpg'); background-color: #FFB6C1;"></div>
+                </div>
+                <div class="yacht-info">
+                    <div class="yacht-location"><i class="fas fa-map-marker-alt"></i> Dubai Marina</div>
+                    <h3 style="color: var(--pink);">Pink Jet Car</h3>
+                    <div class="yacht-features">
+                        <span><i class="fas fa-bolt"></i> Jet Powered</span>
+                        <span><i class="fas fa-clock"></i> 1 Hour</span>
+                        <span><i class="fas fa-car"></i> 3-4 Guests</span>
+                    </div>
+                    <div class="yacht-price">
+                        <div>
+                            <div class="price-tag" style="color: var(--pink);">AED 1,549<span style="font-size:1rem; font-weight:normal;">/hour</span></div>
+                            <div class="price-note">Unique experience</div>
+                        </div>
+                        <div class="enquiry-buttons">
+                            <a href="https://wa.me/971527872669?text=Hi! I want to book Pink Jet Car for 1 hour - AED 1,549" class="btn-whatsapp" style="background: var(--pink);">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://t.me/boatdubai" class="btn-telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- ========== CONTACT SECTION ========== -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact & Booking</h2>
+                <p>Book your yacht or jet car instantly</p>
+            </div>
+            <div class="contact-form-container">
+                <form id="enquiryForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="yacht">Select Vessel *</label>
+                        <select id="yacht" class="form-control" required>
+                            <option value="">Choose a vessel</option>
+                            <option value="Black Pearl">Black Pearl (50 guests) - AED 1,999/hour</option>
+                            <option value="Carmen">Carmen (30 guests) - AED 2,999/hour</option>
+                            <option value="Deemas">Deemas (110 guests) - AED 4,499/hour</option>
+                            <option value="Majesty">Majesty (20 guests) - AED 999/hour</option>
+                            <option value="Pavi">Pavi (35 guests) - AED 1,699/hour</option>
+                            <option value="Conwy 8">Conwy 8 (50 guests) - AED 2,499/hour</option>
+                            <option value="Majesty 48">Majesty 48 (12 guests) - AED 649/hour</option>
+                            <option value="Majesty 50">Majesty 50 (13 guests) - AED 699/hour</option>
+                            <option value="Silver Craft">Silver Craft (8 guests) - AED 499/hour</option>
+                            <option value="Pink Jet Car">Pink Jet Car (3-4 guests) - AED 1,549/hour</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Preferred Date *</label>
+                        <input type="date" id="date" class="form-control" required>
+                    </div>
+                    <button type="submit" class="cta-button" style="width: 100%; background: var(--pink); border: none;">Send Booking Request</button>
+                </form>
+                <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f8f8f8; border-radius: 10px;">
+                    <p><strong>Instant Booking:</strong> +971 52 787 2669 (WhatsApp/Telegram)</p>
+                    <p>bookinghubdubai@gmail.com</p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">We respond within 5 minutes!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>Ocean Charters Dubai</h3>
+                <p>10 luxury vessels - 9 yachts + 1 exclusive pink jet car. Unforgettable Dubai experiences on water.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-phone"></i> +971 52 787 2669</p>
+                <p><i class="fas fa-envelope"></i> bookinghubdubai@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Dubai Marina, UAE</p>
+            </div>
+            <div class="footer-column">
+                <h3>Our Fleet</h3>
+                <p>9 Luxury Yachts</p>
+                <p>1 Pink Jet Car</p>
+                <p>Capacity: 8-110 guests</p>
+                <p>Prices: AED 499 - 4,499/hour</p>
+            </div>
+            <div class="footer-column">
+                <h3>Operating Hours</h3>
+                <p>Daily: 8:00 AM - 11:00 PM</p>
+                <p>24/7 WhatsApp Booking</p>
+                <p>Same Day Available</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; <span id="currentYear"></span> Ocean Charters Dubai. 10 luxury vessels. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Yacht filter functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                const yachts = document.querySelectorAll('.yacht-card');
+                
+                yachts.forEach(yacht => {
+                    const type = yacht.getAttribute('data-type');
+                    const size = yacht.getAttribute('data-size');
+                    
+                    if (filter === 'all') {
+                        yacht.style.display = 'block';
+                    } else if (filter === 'yacht') {
+                        yacht.style.display = type === 'yacht' ? 'block' : 'none';
+                    } else if (filter === 'jet') {
+                        yacht.style.display = type === 'jet' ? 'block' : 'none';
+                    } else if (filter === 'large') {
+                        yacht.style.display = size === 'large' ? 'block' : 'none';
+                    } else if (filter === 'small') {
+                        yacht.style.display = size === 'small' ? 'block' : 'none';
+                    }
+                });
+            });
+        });
+
+        // Form submission
+        document.getElementById('enquiryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const yacht = document.getElementById('yacht').value;
+            const date = document.getElementById('date').value;
+            const phone = document.getElementById('phone').value;
+            const name = document.getElementById('name').value;
+            
+            // Create WhatsApp message
+            const message = `Hello! I would like to book: ${yacht} on ${date}. My name is ${name} and phone number is ${phone}.`;
+            const whatsappUrl = `https://wa.me/971527872669?text=${encodeURIComponent(message)}`;
+            
+            // Redirect to WhatsApp
+            window.open(whatsappUrl, '_blank');
+            
+            // Reset form
+            this.reset();
+            
+            // Set minimum date to tomorrow
+            const dateInput = document.getElementById('date');
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            dateInput.min = tomorrow.toISOString().split('T')[0];
+        });
+
+        // Set minimum date to tomorrow
+        const dateInput = document.getElementById('date');
+        if(dateInput) {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            dateInput.min = tomorrow.toISOString().split('T')[0];
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+                // Close mobile menu if open
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const navLinks = document.querySelector('.nav-links');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            if (!navLinks.contains(e.target) && !mobileMenu.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Start slideshows
+        window.addEventListener('load', function() {
+            const slideshows = document.querySelectorAll('.yacht-slideshow');
+            slideshows.forEach(slideshow => {
+                const slides = slideshow.querySelectorAll('.slide');
+                slides.forEach(slide => {
+                    slide.style.animationPlayState = 'running';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
